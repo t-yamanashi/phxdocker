@@ -1,0 +1,21 @@
+version: '3'
+services: 
+  elixir:
+    build: .
+    volumes:
+      - "./work:/work:rw"
+    ports:
+      - "4000:4000"
+    tty: true
+
+  postgres:
+    image: postgres
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: postgres
